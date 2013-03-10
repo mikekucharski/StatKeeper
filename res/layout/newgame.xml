@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tvOpTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opponent Team" />
+
+    <EditText
+        android:id="@+id/etOpTeam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/tvGameDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game Date" />
+
+    <EditText
+        android:id="@+id/etGameDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date" />
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location" />
+
+    <EditText
+        android:id="@+id/etLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" />
+
+    <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" 
+    android:padding="5dp">
+	    <TextView
+	        android:id="@+id/tvYourScore"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:text="Your Score"
+	        android:gravity="center"
+	        android:layout_weight="1" />
+
+	    <EditText
+	        android:id="@+id/etYourScore"
+	        android:layout_width="75dp"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="number" >
+
+	    </EditText>
+	    <TextView
+	        android:id="@+id/tvOpponentScore"
+	       android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:text="Opponent Score"
+	        android:gravity="center"
+	        android:layout_weight="1" />
+
+	    <EditText
+	        android:id="@+id/etOpponentScore"
+	        android:layout_width="75dp"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="number" />
+	</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:weightSum="100" >
+	    <Button
+	        android:id="@+id/bCancel"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Cancel"
+	        android:layout_weight="50" />
+	
+	    <Button
+	        android:id="@+id/bCreate"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Create"
+	        android:layout_weight="50"  />
+    </LinearLayout>
+
+</LinearLayout>

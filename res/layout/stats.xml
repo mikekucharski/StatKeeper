@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fenway"
+    android:orientation="vertical"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp" >
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Stats"
+        android:textSize="36sp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+     <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" >
+		    <Button
+		        android:id="@+id/bBack"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="Back" 
+		        android:layout_weight="1"/>
+		      <Button
+		        android:id="@+id/bEdit"
+		      	android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="Edit"
+		        android:layout_weight="1" />
+		      <Button
+		        android:id="@+id/bSave"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="Save"
+		        android:layout_weight="1" />
+	 </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/listgrey" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/tvHittingTitle"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/hitting"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/tvH"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="H"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bSUBH"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tvHCount"
+                    android:layout_width="50dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bADDH"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tvAB"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="AB"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bSUBAB"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tvABCount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bADDAB"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="100" >
+
+                <TextView
+                    android:id="@+id/tvAVG"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="AVG"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/tvAVGVal"
+                    android:layout_width="90dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="85"
+                    android:gravity="center"
+                    android:text="@string/start_calc_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/tvBB"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="BB"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bSUBBB"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tvBBCount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bADDBB"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/tvHBP"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="HBP"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bSUBHBP"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+                <TextView
+                    android:id="@+id/tvHBPCount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bADDHBP"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+            
+             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tvSACf"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="SACf"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bSUBSACf"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+                <TextView
+                    android:id="@+id/tvSACfCount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bADDSACf"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/tvPA"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="PA"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bSUBPA"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tvPACount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bADDPA"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+                <TextView
+                    android:id="@+id/tvOBP"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="OBP"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                    android:id="@+id/tvOBPVal"
+                    android:layout_width="60dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="85"
+                    android:gravity="center"
+                    android:text="@string/start_calc_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+                <TextView
+                    android:id="@+id/tvK"
+                    android:layout_width="100dip"
+                  	android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="K"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bSUBK"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+                <TextView
+                    android:id="@+id/tvKCount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bADDK"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/tv1B"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="1B"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bSUB1B"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tv1BCount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bADD1B"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/tv2B"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="2B"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bSUB2B"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tv2BCount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bADD2B"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tv3B"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="3B"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bSUB3B"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tv3BCount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bADD3B"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tvHR"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="HR"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bSUBHR"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tvHRCount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bADDHR"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/tvR"
+                    android:layout_width="100dip"
+					android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="R"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bSUBR"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tvRCount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bADDR"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+            
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/tvRBI"
+                    android:layout_width="100dip"
+					android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="RBI"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bSUBRBI"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tvRBICount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bADDRBI"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/tvROE"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="ROE"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/bSUBROE"
+                    android:layout_weight="1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tvROECount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bADDROE"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tvFC"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="FC"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bSUBFC"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tvFCCount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bADDFC"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/tvFieldingTitle"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/fielding"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+               	android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/tvE"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="E"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bSUBE"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tvECount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bADDE"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/tvCS"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="CS"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bSUBCS"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tvCSCount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bADDCS"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tvSBA"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="SBA"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bSUBSBA"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/minus" />
+
+                <TextView
+                    android:id="@+id/tvSBACount"
+                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/start_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/bADDSBA"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:text="@string/plus" />
+            </LinearLayout>
+            
+             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+                <TextView
+                    android:id="@+id/tvCSP"
+                    android:layout_width="100dip"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="CS%"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                    android:id="@+id/tvCSPVal"
+                    android:layout_width="60dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="85"
+                    android:gravity="center"
+                    android:text="@string/start_calc_value"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+            
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
