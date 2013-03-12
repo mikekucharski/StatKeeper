@@ -13,7 +13,7 @@ public class EditGameActivity extends MySettingsActivity implements OnClickListe
 	private Button bCancel, bUpdate;
 	private long GID;
 	private DBAdapter dba;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

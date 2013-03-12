@@ -20,6 +20,9 @@ public class MainMenuActivity extends MySettingsActivity implements OnClickListe
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.mainmenu);
 		
+		if(getIntent().getBooleanExtra("finishApplication", false) )
+			   finish();
+		
 		initVars();
 	}
 
@@ -44,7 +47,7 @@ public class MainMenuActivity extends MySettingsActivity implements OnClickListe
 		switch(v.getId()){
 		case R.id.bTeams:
 			
-			Intent ourIntent = new Intent(MainMenuActivity.this, TeamsListActivity.class);
+			Intent ourIntent = new Intent(MainMenuActivity.this, TeamListActivity.class);
 			startActivity(ourIntent);
 			
 			break;

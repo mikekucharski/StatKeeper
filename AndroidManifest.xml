@@ -38,7 +38,7 @@
         </activity>
         
         <activity
-            android:name=".TeamsListActivity"
+            android:name=".TeamListActivity"
             android:theme="@style/TransTheme"
             android:label="Team List" >
         </activity>

@@ -5,18 +5,18 @@ public class Game {
 	private String opponent, location, gameDate;
 	private int yourScore, oppScore;
 	private int statH, statAB, statBB, statHBP, statSACf, statPA, statK, 
-				stat1B, stat2B, stat3B, statHR, statR, statRBI,
+				stat1B, stat2B, stat3B, statHR, statR, statRBI, statSB,
 				statROE, statFC, statE, statCS, statSBA;
 	
 	public Game(long foreign_TID, String opponent, String location, String gameDate, 
 			int yourScore, int oppScore){
-		this(foreign_TID, opponent, location, gameDate, yourScore, oppScore, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		this(foreign_TID, opponent, location, gameDate, yourScore, oppScore, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 	}
 	
 	public Game(long foreign_TID, String opponent, String location, String gameDate, 
 			int yourScore, int oppScore, int statH, int statAB, int statBB, int statHBP, int statSACf,
 			int statPA, int statK, int stat1B, int stat2B, int stat3B, int statHR, 
-			int statR, int statRBI, int statROE, int statFC, int statE, int statCS, int statSBA){
+			int statR, int statRBI, int statSB, int statROE, int statFC, int statE, int statCS, int statSBA){
 		
 		this.foreign_TID = foreign_TID;
 		this.opponent = opponent;
@@ -38,6 +38,7 @@ public class Game {
 		this.statHR = statHR;
 		this.statR = statR;
 		this.statRBI = statRBI;
+		this.statSB = statSB;
 		this.statROE = statROE;
 		this.statFC = statFC;
 		this.statE = statE;
@@ -65,6 +66,7 @@ public class Game {
 	public int getstatHR() {return statHR;}
 	public int getstatR()   {return statR;}
 	public int getstatRBI() {return statRBI;}
+	public int getstatSB() {return statSB;}
 	public int getstatROE() {return statROE;}
 	public int getstatFC() {return statFC;}
 	public int getstatE()  {return statE;}

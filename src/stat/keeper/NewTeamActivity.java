@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class NewTeamActivity extends MySettingsActivity implements OnClickListener{
 	
@@ -48,6 +49,7 @@ public class NewTeamActivity extends MySettingsActivity implements OnClickListen
 			dba.addTeamEntry(addTeam);
 			dba.close();
 			
+			Toast.makeText(NewTeamActivity.this, teamName + " Team Created", Toast.LENGTH_LONG).show();
 			
 			this.finish();
 			break;

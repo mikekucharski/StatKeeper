@@ -22,7 +22,7 @@ public class GameListActivity extends ListActivity implements View.OnClickListen
 	private ArrayList<String> games;
 	private ArrayAdapter<String> adapter;
 	private Button newItem, goBack;
-	private TextView title;
+	private TextView tvTitle, tvWLT;
 	private DBAdapter dba;
 	private long team_id;
 
@@ -30,18 +30,22 @@ public class GameListActivity extends ListActivity implements View.OnClickListen
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.menu);
-		
+		team_id = this.getIntent().getExtras().getLong("team_id");
 		dba = new DBAdapter(GameListActivity.this);
 		
-		team_id = this.getIntent().getExtras().getLong("team_id");
+		tvWLT = (TextView) this.findViewById(R.id.tvWLT);
+		tvWLT.setVisibility(View.VISIBLE);
+		
 		dba.open();
+		tvWLT.setText(dba.getWLT(team_id));
 		Team currentTeam = dba.getTeam(team_id);
+		
 		dba.close();
 		
 		
 		// set up button references to xml
-		title =  (TextView) this.findViewById(R.id.tvTitle);
-		title.setText(currentTeam.getTeamName() + " Games");
+		tvTitle =  (TextView) this.findViewById(R.id.tvTitle);
+		tvTitle.setText(currentTeam.getTeamName() + " Games");
 		newItem = (Button) this.findViewById(R.id.bAddEntry);
 		newItem.setText("New Game");
 		newItem.setOnClickListener(this);
@@ -81,6 +85,7 @@ public class GameListActivity extends ListActivity implements View.OnClickListen
 	private void updateGameList() {
 		dba.open();
 		ArrayList<Game> dbGames = dba.getAllGames(team_id);
+		tvWLT.setText(dba.getWLT(team_id));
 		dba.close();
 		
 		games.clear();

@@ -14,7 +14,7 @@ public class DBAdapter {
 	
 	// set up database
 	private static final String DATABASE_NAME = "DBBaseball";
-	private static final int DATABASE_VERSION = 4;
+	private static final int DATABASE_VERSION = 5;
 
 	private DatabaseHelper ourHelper;
 	private final Context ourContext;
@@ -22,7 +22,7 @@ public class DBAdapter {
 	
 	// Games table
 	private static final String GAMES_TABLE = "games";
-	public static final String KEY_GID = "_id";
+	public static final String KEY_GID = "g_id";
 	public static final String KEY_FK_TID = "foreign_team_id";
 	public static final String KEY_OPPONENT = "opponent_team";
 	public static final String KEY_LOCATION = "location";
@@ -42,16 +42,17 @@ public class DBAdapter {
 	public static final String KEY_STAT_HR = "HR";
 	public static final String KEY_STAT_R = "R";
 	public static final String KEY_STAT_RBI = "RBI";
+	public static final String KEY_STAT_SB = "SB";
 	public static final String KEY_STAT_ROE = "ROE";
 	public static final String KEY_STAT_FC = "FC";
 	public static final String KEY_STAT_E = "E";
 	public static final String KEY_STAT_CS = "CS";
-	public static final String KEY_STAT_SBA = "SB";
+	public static final String KEY_STAT_SBA = "SBA";
 	
 	
 	// Teams table
 	private static final String TEAMS_TABLE = "teams";
-	public static final String KEY_TID = "_id";
+	public static final String KEY_TID = "t_id";
 	public static final String KEY_TEAMNAME = "team_name";
 	public static final String KEY_SEASONNAME = "season_name";
 	public static final String KEY_YEAR = "year";
@@ -93,6 +94,7 @@ public class DBAdapter {
 					KEY_STAT_HR + " INTEGER NOT NULL," +
 					KEY_STAT_R + " INTEGER NOT NULL," +
 					KEY_STAT_RBI + " INTEGER NOT NULL," +
+					KEY_STAT_SB + " INTEGER NOT NULL," +
 					KEY_STAT_ROE + " INTEGER NOT NULL," +
 					KEY_STAT_FC + " INTEGER NOT NULL," +
 					KEY_STAT_E + " INTEGER NOT NULL," +
@@ -151,6 +153,7 @@ public class DBAdapter {
 		cv.put( KEY_STAT_HR , 0);
 		cv.put( KEY_STAT_R , 0);
 		cv.put( KEY_STAT_RBI , 0);
+		cv.put( KEY_STAT_SB , 0);
 		cv.put( KEY_STAT_ROE , 0);
 		cv.put( KEY_STAT_FC , 0);
 		cv.put( KEY_STAT_E , 0);
@@ -327,6 +330,7 @@ public class DBAdapter {
 		int istatHR = gc.getColumnIndex(KEY_STAT_HR);
 		int istatR = gc.getColumnIndex(KEY_STAT_R);
 		int istatRBI = gc.getColumnIndex(KEY_STAT_RBI);
+		int istatSB = gc.getColumnIndex(KEY_STAT_SB);
 		int istatROE = gc.getColumnIndex(KEY_STAT_ROE);
 		int istatFC = gc.getColumnIndex(KEY_STAT_FC);
 		int istatE = gc.getColumnIndex(KEY_STAT_E);
@@ -339,8 +343,9 @@ public class DBAdapter {
 								  gc.getInt(istatHBP), gc.getInt(istatSACf), gc.getInt(istatPA),
 								  gc.getInt(istatK), gc.getInt(istat1B), gc.getInt(istat2B),
 								  gc.getInt(istat3B), gc.getInt(istatHR), gc.getInt(istatR),
-								  gc.getInt(istatRBI), gc.getInt(istatROE), gc.getInt(istatFC),
-								  gc.getInt(istatE), gc.getInt(istatCS), gc.getInt(istatSBA)
+								  gc.getInt(istatRBI), gc.getInt(istatSB), gc.getInt(istatROE),
+								  gc.getInt(istatFC), gc.getInt(istatE), gc.getInt(istatCS), 
+								  gc.getInt(istatSBA)
 								  );
 		
 		gc.close();
@@ -363,7 +368,7 @@ public class DBAdapter {
 	
 	public void updateGameStats( long gid, int statH, int statAB, int statBB, int statHBP, int statSACf,
 			int statPA, int statK, int stat1B, int stat2B, int stat3B, int statHR, 
-			int statR, int statRBI, int statROE, int statFC, int statE, int statCS, int statSBA  )
+			int statR, int statRBI, int statSB, int statROE, int statFC, int statE, int statCS, int statSBA  )
 	{
 		ContentValues cvUpdate = new ContentValues();
 		cvUpdate.put( KEY_STAT_H , statH );
@@ -379,6 +384,7 @@ public class DBAdapter {
 		cvUpdate.put( KEY_STAT_HR , statHR);
 		cvUpdate.put( KEY_STAT_R , statR);
 		cvUpdate.put( KEY_STAT_RBI , statRBI);
+		cvUpdate.put( KEY_STAT_SB , statSB);
 		cvUpdate.put( KEY_STAT_ROE , statROE);
 		cvUpdate.put( KEY_STAT_FC , statFC);
 		cvUpdate.put( KEY_STAT_E , statE);
@@ -392,25 +398,47 @@ public class DBAdapter {
 		return ourDatabase.delete(GAMES_TABLE, KEY_GID + "=" + gid, null) > 0;
 	}
 
-	public int getAllHits(long TID) {
-		int totalHits = -1;
+	public int getTotalStat(long TID, String stat) {
+		int total = -1;
 		
-		  String sql="select Sum(?) from games where _id =?";
-		    Cursor tc = ourDatabase.rawQuery(sql, new String[] { KEY_STAT_H ,KEY_TID});
-		
-//		Cursor tc = ourDatabase.rawQuery("SELECT SUM(" + KEY_STAT_H + ") as TOTH " +
-//						 "FROM " + GAMES_TABLE + " WHERE " + KEY_TID + "=" + TID, null);
-		if (tc == null){
+		String sql="select Sum("+stat+") as TOTAL from games where foreign_team_id=" + TID;
+		Cursor tc = ourDatabase.rawQuery(sql, null);
+
+		if (tc == null)
 			return -1;
-		}else{
-			tc.moveToFirst();
-			totalHits = tc.getInt(tc.getColumnIndex("TOTH"));
-			Log.i("emulator", " othercols = " + tc.isLast());
-		}
-		
+	
+		tc.moveToFirst();
+		total = tc.getInt(tc.getColumnIndex("TOTAL"));
 		tc.close();
 		
-		return totalHits;
+		return total;
+	}
+
+	public String getWLT(long team_id) {
+		int wins=0, losses=0, ties=0;
+		
+		String SQLgetAllGames="select * from games where "+KEY_FK_TID+"=" + team_id;
+		Cursor gc = ourDatabase.rawQuery(SQLgetAllGames, null);
+		
+		int iYScore = gc.getColumnIndex(KEY_YOUR_SCORE);
+		int iOScore = gc.getColumnIndex(KEY_OPPONENT_SCORE);
+
+		if (gc == null)
+			return "0-0-0";
+		
+		for(gc.moveToFirst(); !gc.isAfterLast(); gc.moveToNext())
+		{
+			if(gc.getInt(iYScore) > gc.getInt(iOScore))
+				wins++;
+			else if (gc.getInt(iYScore) < gc.getInt(iOScore))
+				losses++;
+			else
+				ties++;
+		}
+		
+		gc.close();
+		
+		return wins + "-" + losses + "-" + ties;
 	}
 
 }

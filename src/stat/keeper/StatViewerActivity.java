@@ -11,19 +11,20 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class StatViewerActivity extends MySettingsActivity implements OnClickListener{
 	
 	private ArrayList<Stat> stats = new ArrayList<Stat>();
 	
-	private Stat H, AB, BB, HBP, SACf, PA, K, ONEB, TWOB, THREEB, HR, RUNS, RBI, ROE, FC, E, CS, SBA;
+	private Stat H, AB, BB, HBP, SACf, PA, K, ONEB, TWOB, THREEB, HR, RUNS, RBI, SB, ROE, FC, E, CS, SBA;
 	
 	private TextView title, HCount, ABCount, PACount, BBCount, OneBCount, TwoBCount, ThreeBCount,
-	 		 HRCount, RBICount, RUNSCount, KCount, HBPCount, ROECount, SACfCount, FCCount, ECount,
+	 		 HRCount, RBICount, SBCount, RUNSCount, KCount, HBPCount, ROECount, SACfCount, FCCount, ECount,
 	 		 CSCount, SBACount, calcAVG, calcOBP, calcCSPerc;
 	
 	private Button HAdd, HSub, ABAdd, ABSub,  PAAdd,  PASub,  BBAdd,  BBSub, OneBAdd, OneBSub, 
-		   TwoBAdd, TwoBSub, ThreeBAdd, ThreeBSub, HRAdd, HRSub, RBIAdd, RBISub,
+		   TwoBAdd, TwoBSub, ThreeBAdd, ThreeBSub, HRAdd, HRSub, RBIAdd, RBISub, SBAdd, SBSub,
 	       RUNSAdd, RUNSSub, KAdd, KSub, HBPAdd, HBPSub, ROEAdd, ROESub, SACfAdd, SACfSub,
 	       FCAdd, FCSub, EAdd, ESub, CSAdd, CSSub, SBAAdd, SBASub, Edit, Back, Save;
 	
@@ -67,6 +68,7 @@ public class StatViewerActivity extends MySettingsActivity implements OnClickLis
 		HRCount.setText("" + game.getstatHR());
 		RUNSCount.setText("" + game.getstatR());
 		RBICount.setText("" + game.getstatRBI());
+		SBCount.setText("" + game.getstatSB());
 		ROECount.setText("" + game.getstatROE());
 		FCCount.setText("" + game.getstatFC());
 		ECount.setText("" + game.getstatE());
@@ -77,6 +79,10 @@ public class StatViewerActivity extends MySettingsActivity implements OnClickLis
 		double OBPVal = ( (game.getstatH() + game.getstatBB() + game.getstatHBP()) * 1.0 ) 
 							/ (game.getstatAB() + game.getstatBB() + game.getstatHBP() + game.getstatSACf());
 		double CSPercent = (game.getstatCS() * 1.0) / (game.getstatSBA()) * 100.0;
+		
+		AVGVal = (game.getstatAB() == 0) ? 0 : AVGVal;
+		OBPVal = ( (game.getstatAB() + game.getstatBB() + game.getstatHBP() + game.getstatSACf()) == 0) ? 0 : OBPVal;
+		CSPercent = ((game.getstatSBA()) == 0) ? 0 : CSPercent;
 		
 		calcAVG.setText(String.format("%.3f", AVGVal));
 		calcOBP.setText(String.format("%.3f", OBPVal));
@@ -172,6 +178,12 @@ public class StatViewerActivity extends MySettingsActivity implements OnClickLis
 		RBICount = (TextView)findViewById(R.id.tvRBICount);
 		RBI = new Stat(RBIAdd, RBISub, RBICount);
 		stats.add(RBI);
+
+		SBAdd = (Button) findViewById(R.id.bADDSB);
+		SBSub = (Button) findViewById(R.id.bSUBSB);
+		SBCount = (TextView)findViewById(R.id.tvSBCount);
+		SB = new Stat(SBAdd, SBSub, SBCount);
+		stats.add(SB);
 		
 		ROEAdd = (Button) findViewById(R.id.bADDROE);
 		ROESub = (Button) findViewById(R.id.bSUBROE);
@@ -228,6 +240,9 @@ public class StatViewerActivity extends MySettingsActivity implements OnClickLis
 				
 				updateDB();
 				pullStatsFromDB();
+				
+				Toast.makeText(StatViewerActivity.this, title.getText() + " Saved", Toast.LENGTH_LONG).show();
+				
 				break;
 		}
 	}
@@ -237,7 +252,7 @@ public class StatViewerActivity extends MySettingsActivity implements OnClickLis
 		dba.updateGameStats(GID, stats.get(0).getCount(), stats.get(1).getCount(), stats.get(2).getCount(), stats.get(3).getCount(), stats.get(4).getCount(),
 				 stats.get(5).getCount(), stats.get(6).getCount(), stats.get(7).getCount(), stats.get(8).getCount(), stats.get(9).getCount(),
 				 stats.get(10).getCount(), stats.get(11).getCount(), stats.get(12).getCount(), stats.get(13).getCount(), stats.get(14).getCount(), 
-				 stats.get(15).getCount(), stats.get(16).getCount(), stats.get(17).getCount()
+				 stats.get(15).getCount(), stats.get(16).getCount(), stats.get(17).getCount(), stats.get(18).getCount()
 				);
 		dba.close();
 	}

@@ -1,6 +1,8 @@
 package stat.keeper;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -33,7 +35,17 @@ public class MySettingsActivity extends Activity{
 				startActivity(prefIntent);
 				break;
 			case R.id.aboutApp:
-				// set up an activity the old way
+				
+				AlertDialog.Builder dialog = new AlertDialog.Builder(MySettingsActivity.this);
+				dialog.setTitle("About Stat Keeper");
+				dialog.setMessage("This is some info about this app");
+				
+				dialog.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {}
+				});
+				
+				dialog.show();
 				
 				break;
 			case R.id.exit:
