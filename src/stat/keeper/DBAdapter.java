@@ -1,13 +1,19 @@
 package stat.keeper;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
 import android.util.Log;
 
 public class DBAdapter {
@@ -58,8 +64,27 @@ public class DBAdapter {
 	public static final String KEY_YEAR = "year";
 	
 	private static class DatabaseHelper extends SQLiteOpenHelper {
-	    DatabaseHelper(Context context) {
-	      super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		
+	    DatabaseHelper(Context context) 
+	    {
+	    	super(context, DATABASE_NAME, null, DATABASE_VERSION);
+//	    	super(new ContextWrapper(context) {
+//	            @Override public SQLiteDatabase openOrCreateDatabase(String name, 
+//	                    int mode, SQLiteDatabase.CursorFactory factory) {
+//
+//	            	File sdcard = Environment.getExternalStorageDirectory();
+//	                // allow database directory to be specified
+//	                File dir = new File(sdcard.getAbsolutePath() + "/StatKeeper2/data");
+//	            
+//	                if(!dir.exists()) {
+//	                	Log.i("emulator", "making dir");
+//	                    dir.mkdirs();
+//	                }
+//	                
+//	                return SQLiteDatabase.openDatabase(dir + "/" + DATABASE_NAME, null,
+//	                    SQLiteDatabase.CREATE_IF_NECESSARY);
+//	            }
+//	        }, DATABASE_NAME, null, DATABASE_VERSION);
 	    }
 
 		@Override
@@ -112,7 +137,7 @@ public class DBAdapter {
 			 db.execSQL("DROP TABLE IF EXISTS " + GAMES_TABLE);
 			 onCreate(db);
 		}
-	}
+	} // Database helper class end
 	
 	// DBAdapter constructor
 	public DBAdapter(Context context){
@@ -121,7 +146,10 @@ public class DBAdapter {
 	}
 	
 	public DBAdapter open() throws SQLException {
+		
 	    ourDatabase = ourHelper.getWritableDatabase();
+	    //ourDatabase.openDatabase(path, factory, flags);
+
 	    if (!ourDatabase.isReadOnly()) {
 	    	ourDatabase.execSQL("PRAGMA foreign_keys=ON;");
 	    }
@@ -130,8 +158,37 @@ public class DBAdapter {
 	
 	public void close() {
 		ourHelper.close();
+		//copyDBtoSD();
 	}
 	
+	private void copyDBtoSD() {
+		try {
+	        File sd = Environment.getExternalStorageDirectory();
+	        File data = Environment.getDataDirectory();
+
+	        if (sd.canWrite()) {
+	            String currentDBPath = "//data//stat//keeper//databases//" + DATABASE_NAME;
+	            File currentDB = new File(data, currentDBPath);
+	            File backupDB = new File(sd.getAbsolutePath() + "//StatKeeper//Data//" + DATABASE_NAME);
+
+	            if(!backupDB.exists()){
+	            	Log.i("emulator", " ADDING DIRS");
+	            	backupDB.mkdirs();
+	            }
+	            
+	            if (currentDB.exists()) {
+	            	Log.i("emulator", "CURRENT DB EXISTS");
+	                FileChannel src = new FileInputStream(currentDB).getChannel();
+	                FileChannel dst = new FileOutputStream(backupDB).getChannel();
+	                dst.transferFrom(src, 0, src.size());
+	                src.close();
+	                dst.close();
+	            }
+	        }
+	    } catch (Exception e) {
+	    }
+	}
+
 	public long addGameEntry(Game newGame){
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_FK_TID, newGame.getTeamID());

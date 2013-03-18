@@ -56,8 +56,8 @@ public class NewGameActivity extends MySettingsActivity implements OnClickListen
 			break;
 		case R.id.bCreate:
 			String opp = etOppTeam.getText().toString().trim();
-			String loc = etDate.getText().toString().trim();
-			String date = etLocation.getText().toString().trim();
+			String loc = etLocation.getText().toString().trim();
+			String date = etDate.getText().toString().trim();
 			String yScore = etYourScore.getText().toString().trim();
 			String oScore = etOppScore.getText().toString().trim();
 			
