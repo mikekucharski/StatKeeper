@@ -1,7 +1,7 @@
 StatKeeper
 ==========
 
-This is an android application used to store baseball statistics.
+This is an android application used to track and store personal baseball statistics.
 
 ## Errors when cloning?
 
